@@ -81,12 +81,12 @@ The [imread](http://www.mathworks.com/help/matlab/ref/imread.html) command is us
     
     What is the dimension of the output?
 
-    >   Answer
+    >256 x 256
 
 3.  Read the ``4.2.03`` image
     What is the dimension of the output?
 
-    >   Answer
+    >   512 x 512 x 3
 
 ## Displaying Images
 
@@ -99,7 +99,8 @@ The following commands can be used for displaying images
 2.  Try displaying the images read in the previous point using both commands
 3.  What are the differences?
 
-    >   Answer
+    >   image muestra las imagenes entre ejes numerados
+imshow las muestra tal como son.
 
 ## Writing Images
 
@@ -150,8 +151,7 @@ We can do this to simulate difficult capture conditions, and evaluate the algori
 2.  Try the diffente noise types, and save the noisy images to the repository (5 images)
 3.  Try saving noisy images as jpg, what happens?
 
-    > Answer
-
+    > En el caso del filtro Salt and pepper al guardarse en jpg vuelve los puntos de ruido con color a puntos blancos
 ### Median filter
 
 These filters can be applied to a an image in order to remove noise. 
