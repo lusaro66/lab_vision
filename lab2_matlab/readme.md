@@ -164,7 +164,7 @@ These filters can be applied to a an image in order to remove noise.
 3.  Try different sizes for the filters
 4.  Which filter works best for salt & pepper noise?
 
-    > Answer
+    > Filtro mediano
 
 For more on noise removal read http://www.mathworks.com/help/images/noise-removal.html
 
@@ -177,7 +177,7 @@ which can be otained from [fspecial](http://www.mathworks.com/help/images/ref/fs
 2.  Try different sizes for the filters
 3.  What differences do you notice?
 
-    > Answer
+    > Cuando se amplia a [5 5] en filtro average se suaviza mas pero se pierde calidad de imagen. Al aplicar un filtro gaussiano la imagen se parece mas a la original. Cuando se aumenta el tamano y se reduce sigma aumenta el brillo de la imagen y cuando se reduce el tamano se distorsiona.
 
 ### Sharpen
 
@@ -185,11 +185,11 @@ The [imsharpen](http://www.mathworks.com/help/images/ref/imsharpen.html) functio
 
 1.  Sharp the ``5.1.12`` image. What do you notice?
 
-    > Answer
+    > Se destacan los bordes de las figuras que componen la imagen
 
 2.  Sharp a blurred image. What do you notice?
 
-    > Answer
+    > La imagen tomo nitidez
 
 ### Edge detection
 
@@ -204,7 +204,7 @@ Notice that the last two filters detect horizontal edges, in order to detect ver
 1.  Try applying this filters
 2.  What is the difference between prewitt and sobel?
 
-    > Answer
+    > Sobel permite ver mas bordes. Los pixeles que se encuentran en el limite se ven mas blancos
 
 More sophisticated methods for finding edges can be found in the following pages
     -   http://www.mathworks.com/discovery/edge-detection.html
@@ -259,11 +259,11 @@ The [impyramid](http://www.mathworks.com/help/images/ref/impyramid.html) functio
 2.  Create a four level pyramid from the ``5.1.12`` clock  image
 3.  At what level does the people in the picture dissappear?
 
-    >   Answer
+    >   A nivel 2 desaparecen las personas de la foto
     
 4.  At what level does the numbers in the clock disappear?
 
-    >   Answer
+    >   A nivel 2 ya no se distinguen
 
 ## Template Matching
 
@@ -303,13 +303,13 @@ The [norm2corrx](http://www.mathworks.com/help/images/ref/normxcorr2.htm) can be
     ```
 6.  Explain what the above code does
 
-    > Answer
+    > Recorta la seccion de laimagen donde aparece el tren y lo guarda en las variables train y square.Luego crea una ocrrelaci[on entre la imagen cortada y la original, para identificar su posicion en la imagen original y la colorea en esta.
     
 7.  Now lets find the train in the next frame, read image ``motion05.512.tiff``.
 8.  Apply the procedure written above to it (use the train template from the past frame)
 9.  What are the limitations of this method?
 
-    > Answer
+    > No idenfica con precision a ubicacion de la figura que se busca, solo la destaca coloreando una porcion. Tampoco se conoce el tamano de la imagen original que coincide con la imagen buscada
 
 See [here](http://www.mathworks.com/help/images/examples/registering-an-image-using-normalized-cross-correlation.html)
 another example.
