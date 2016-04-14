@@ -1,9 +1,8 @@
-# Introduction to the lab
+# Introduction to Linux
 
 ## Preparation
 
-1. Boot from a live cd
-   We will be using the [Ubuntu gnome](http://ubuntugnome.org/) distribution
+1. Boot from a live cd, we will be using the [Ubuntu gnome](http://ubuntugnome.org/) distribution.
 
 2. Configure keyboard and software repository
    From the *Activities* menu (top left corner, or *start* key):
@@ -13,20 +12,22 @@
 ## Introduction to Linux
 
 1. The graphical interface
+
    Linux can be run using a graphical interface. There are several of these available for every taste.
    (http://www.howtogeek.com/163154/linux-users-have-a-choice-8-linux-desktop-environments/).
    Most activities can be accomplished from the interface, but the terminal is where the real power lies.
 
 2. Linux Distributions
+
    Linux is free software, and as such it is possible for people to do all kinds of things with it.
-   The main component in linux is the kernel, which is the part of the operating system that communicates
-   with the hardware and manages resources. On top of it applications run. Just the kernel is not very useful,
-   applications are required to get the job done. Distributions pack together the kernel with several 
+   The main component in linux is the kernel, which is the part of the operating system that interfaces 
+   with the hardware and manages resources. Applications run on top of it on user space. 
+   Distributions pack together the kernel with several 
    applications in order to provide a complete system. There are hundreds of linux distributions available. In
    this lab we will be using Ubuntu because it is one of the largest, more supported, and user friendly distributions.
 
-2. The file system through the terminal
-   Some basic systems to navigate through the file system
+2. The file system through the terminal   
+   Some basic commands to navigate through the file system
 
    -  ls: List contents of current directory
    -  pwd: Give location of current directory
@@ -69,24 +70,35 @@
    ```bash
    cat /etc/passwd | tr ':' '\t'
    ```
+   
+4. Owner and permissions   
+   Use ``ls -l`` to see a detailed list of files, this includes permissions and ownership
+   Permissions are displayed as 9 letters, for example the following line means that the directory (we know it is a directory becasue of the first *d*) *images*
+   belongs to user *vision* and group *vision*. Its owner can read write and enter it, users in the group can only read and enter the directory, while other users can't do anything. For files the x means execute. 
+   ```bash
+   drwxr-x--- 2 vision vision 4096 ene 25 18:45 images
+   ```
+   See http://linuxcommand.org/lts0070.php for more information.
+   
+   -  ``chmod`` change access permissions of a file (you must have write access)
+   -  ``chown`` change the owner of a file
 
+## Exercise: Image database
 
-## Image database
-
-1. The following command lets us connect to another system and use the terminal as it where there,
+1. The following command lets us connect to another machine and use its terminal,
    the second command lets us copy files between systems.
 
    ```bash
    
    #connect
-   ssh vision@guitaca.uniandes.edu.co
+   ssh vision@SERVER
    
    #copy 
-   scp vision@guitaca:/home/vision/sipi_images/<file> .
+   scp vision@SERVER:/datos1/vision/sipi_images/<file> .
    ```
    
 2.  Decompress the images (use ``tar``, check the man)
-3.  use  ``imagemagick`` to find all *grayscale* images
+3.  Use  ``imagemagick`` to find all *grayscale* images
     Notice that we first need to install the *imagemagick* package by typing
 
     ```bash
@@ -95,7 +107,7 @@
     
     Sudo is a special command that lets us perform the next command as if we were system administrators
     (super users). In general it is not recommended to work as a super user, it should only be used 
-    when it is necessary. This is like that to protect you from breaking the system.
+    when it is necessary. This provides additional protectection for the system.
     
     ```bash
     find . -name "*.tiff" -exec identify {} \; | grep -i gray | wc -l
@@ -133,96 +145,43 @@
       done
       
       ```
-      -  save it for example as ``find_duplicates.sh``
-      -  make executable ``chmod u+x`` (This means add Execute permiisin for the user)
+      -  save it for example as ``find_color_images.sh``
+      -  make executable ``chmod u+x`` (This means add Execute permision for the user)
       -  run ``./find_duplicates.sh`` (The dot is necessary to run a program in the current directory)
       
 5.  Find all images with size larger than 500k
-    how many are there? (use ``wc`` and ``find``)
+6.  how many are there? (use ``wc`` and ``find``)
    
+7. Convert all images to *jpg* (tip: use ``mogrify``)
 
-## Compiling a program
+## In the Cloud
 
-4. Install git (use ``apt-get`` as before)
-5. Also install ``g++`` and ``autoconf`` 
-5. clone open syobon
-   ```bash
-   git clone https://github.com/Alexander--/open-syobon.git
-   ```
-   This will create the repository directory in the current directory
-   
-6. Find a file named ``install`` and read it.
-6. install dependencies (SDL version 1.2)
-   > Note: to search packages use ``apt-cache search ``
+- [Koding](https://koding.com/R/diego0020) Offers free virtual machines running linux in the cloud. 
+- [Red Hat OpenShift](https://www.openshift.com/pricing/plan-comparison.html) Commercial platform as a service from red hat, has a free plan.
+- [Amazon Web Services](https://aws.amazon.com) Commercial cloud service, includes instances with GPU to run CUDA applications.
+- [Google Cloud](cloud.google.com) Commercial cloud service
+- [Cloud académico uniandes](https://cloud.uniandes.edu.co/).... New offer in the university
 
-   ```bash
-   sudo apt-get install libsdl-gfx1.2-dev libsdl-image1.2-dev libsdl-mixer1.2-dev libsdl-ttf2.0-dev libfontconfig1-dev
-   ```
-   
-   
-7. Create configure file
+## On Windows
 
-   ```bash
-   #to generate the configuration file
-   autoreconf --install
-   autoconf
-   ```
-   
-   
-7. compile game
+- To connect to linux machines using ssh:
+   - [putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/)
+   - [MobaXterm](http://mobaxterm.mobatek.net/) Non-free
+- To transfer files using ssh
+   - [filezilla](https://filezilla-project.org/)
+   - [WinSCP](https://winscp.net/eng/docs/free_ssh_client_for_windows)
+   - [... more](http://www.thegeekstuff.com/2011/06/windows-sftp-scp-clients/)
+- Emulate linux environment, run shell scripts, connect to machines using X protocol, use linux tools
+   - [cygwin](https://www.cygwin.com/)
 
-   ```bash
-   ./configure --prefix=/usr/local
-   make
-   sudo make install
-   ```
-   > Note in newer projects ``cmake`` is replacing configure
-   
-8. test
-   > WARNING: The game is very noisy
+## Practice questions
 
-   ```bash
-   syobon -window
-   #If he is jumping like crazy press all 4 arrow keys sequentially
-   ```
+1. Download the *bsds500* database and decompress it.
+2. How many images are there?
+3. What is the resolution?
+4. How many of them are in *landscape* orientation (opposed to *portrait*)?
+5. Crop all images to make them square using [imagemagick](http://www.imagemagick.org/script/index.php)
 
-## GitHub
+## Tutorial
 
-1. Open the openSyobon repository on the web browser
-   https://github.com/Alexander--/open-syobon
-   
-   -  Look at the commit history
-   -  How many other repositories does the author have
-
-2. Vision lab repository: https://github.com/diego0020/lab_vision
-   
-3. Fork vision lab repository to your account
-
-## SmartGit
-
-1. Install smart git from http://www.syntevo.com/smartgit/download
-   choose debian package
-2. Configure your github account
-3. Clone your fork of the vision_lab repository (use the clone button)
-4. open the ``questions.md`` file
-4. answer the first question in the github web interface, and commit
-5. pull
-   > This will bring changes from the server to your local copy
-6. answer the second question in gedit at your local pc
-5. commit the changes
-6. push
-   > This sends changes from your local copy to the server
-7. verify changes in github
-
-   Notice that in order to push, your local copy and that of the server must be synchronized. If it is not the
-   case, you need to first pull the changes from the server, and rebase or merge, solving the possible conflicts.
-   
-   For more information about git look at
-   https://www.atlassian.com/git/tutorials
-
-## Homework
-
-Answer the rest of the questions in ``questions.md``
-
-
-
+http://www.ee.surrey.ac.uk/Teaching/Unix/ 

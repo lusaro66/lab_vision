@@ -3,10 +3,10 @@
 ## Data
 
 
-The data for this lab can be downloaded from the following mirrors in the university
+The data for this lab can be downloaded from the course server using http or ssh protocols
 
-- Guainia, http: http://guainia.uniandes.edu.co/seg_images.zip
-- Guitaca, ssh: ``scp vision@guitaca.uniandes.edu.co:/home/vision/seg_images.zip .``
+- `scp vision@<server>:/datos1/vision/images/images.tar.gz .`
+- http://157.253.63.7/images.tar.gz
 
 For using ssh in windows you may use [putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) 
 or [filezilla](http://portableapps.com/apps/internet/filezilla_portable)  
@@ -24,7 +24,7 @@ Where
 - feature_space : 'rgb', 'lab', 'hsv', 'rgb+xy', 'lab+xy', 'hsv+xy'
 - clustering_method = k-means, gmm, hierarchical or watershed (code seen in class).
 
-The output of the function should be a image (or matrix) where each pixel has a cluster label.
+The output of the function should be an image (or matrix) where each pixel has a cluster label. In other words, pixels that belong to the same cluster should have the same integer label.
 
 ## Test your function
 
@@ -39,7 +39,13 @@ You should see an image similar to the following, where each color represents a 
 
 ![Example of segmentation](segmented.png)
 
-Try different parameters of your function, and see which ones work best. Next week we will perform a formal test of this function.
+Try different parameters of your function, and see which ones work best. **Next week** we will perform a formal test of this function.
+
+## Notes
+
+- If you run into memory problems try downsampling the image
+- *xy* stands for the spatial _x_ and _y_ coordinates
+- You may need to scale the different channels to make them comparable, or to make some of them more important in the clustering process. For example _coords = ( α\*r, α\*g, α\*b, β\*x, β\*y)_
 
 ## End
 

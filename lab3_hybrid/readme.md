@@ -7,7 +7,7 @@ This lab is based on
 - http://cs.brown.edu/courses/cs143/proj1/
 - https://courses.engr.illinois.edu/cs498dh3/fa2014/projects/hybrid/ComputationalPhotography_ProjectHybrid.html
 - http://cvcl.mit.edu/publications/OlivaTorralb_Hybrid_Siggraph06.pdf
-- http://cvcl.mit.edu/hybridimage.htm
+- http://cvcl.mit.edu/hybridimage.htm (Link down)
 
 ## Examples
 
@@ -15,27 +15,27 @@ This lab is based on
 
 ![Jaguar - Tiger](JaguarTigerHybrid.jpg)
 
-This images look different when viewed from far away (or in a small size), than when looking at them in front of the screen.
+These images look different when viewed from far (or zoomed out), than when looking at close range.
 
 ## Theory
 
-*Hybrid images* are composed from two images. A low pass filter is applied to the first one and a high pass filter is applied to the other one. From a close distance the high pass filtered imaged dominates, while from a large distance the low pass filreded one does. The effect works best when the images are aligned.
+*Hybrid images* are composed from two images. A low pass filter is applied to the first one and a high pass filter is applied to the other. From a close distance the high pass filtered imaged dominates, while from a far away the low pass filtered one does. The effect works best when images are aligned.
 
 ## Exercise
 
 ### Choose images
 
-The data folder (originally downloaded from [here](http://cs.brown.edu/courses/cs143/proj1/) ) contains several pairs of images already aligned. Choose one of them, and read both images into matlab.
+The data folder (originally downloaded from [here](http://cs.brown.edu/courses/cs143/proj1/) ) contains several pairs of aligned images. Choose one pair, and read both images into matlab.
 
 ### Filtering
 
 Use [imfilter](http://www.mathworks.com/help/images/ref/imfilter.html) to apply a low pass filter to one image.
-For creating the high-pass filtered image, apply a low pass filter to it, and then substract it from the original image. Mathematically: *Y = X - f(X)* , where *X* is the input image and *f* is the low pass filter. Note that this image will contain negative values.
+For creating the high-pass filtered image, apply a low pass filter to it, and then subtract it from the original image. Mathematically: *Y = X - f(X)* , where *X* is the input image and *f* is the low pass filter. Note that this image will contain negative values.
 
 Look at the [fft](http://www.mathworks.com/help/matlab/ref/fft2.html) and [dct](http://www.mathworks.com/help/images/ref/dct2.html) transforms of
 
 - The original images
-- The filter 
+- The filter
 - The filtered images
 
 ### Summing the images
@@ -67,13 +67,15 @@ Create a hybrid image based on images from your own collections. The more origin
 - Be creative
 - Avoid images downloaded from internet
 
-Notice that you will have to align the images to increase the effect. To do this you may use image edition software like gimp or photoshop. You are free to do any additional processing that you want in order to increase the effect.
+Notice that you will have to *align and crop* the images to get a good effect. To do this you may use image edition software like gimp or photoshop. You are free to do any additional processing that you want in order to increase the effect. Also consider how to deal with color on the images.
 
-Finally, upload to the repository 
+Finally, upload to the repository
 
 - The original images
+- The processed images (cropped, aligned, color adjusted)
+- A short description of each image (one paragraph)
 - The final hybrid image
 - The pyramid
-- The code you used
+- The code you used (with comments)
 
-**DUE**: 3 /3 /2015 ; 8:00 a.m. 
+**DUE**: 3 /3 /2016 ; 10:00 a.m.
