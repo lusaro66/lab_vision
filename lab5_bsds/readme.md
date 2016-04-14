@@ -8,14 +8,14 @@ please look at their website.
 
 ## Download data
 
-The data for this lab can be downloaded from the following mirrors in the university
+The data for this lab can be downloaded from the course server using the following protocols
 
-- Guainia, http: http://guainia.uniandes.edu.co/BSR_full.tgz
-- Guitaca, ssh: ``scp vision@guitaca.uniandes.edu.co:/home/vision/BSR_full.tgz .``
+- ssh or rsync : ``vision@157.253.63.7:/datos1/vision/images/BSR_full.tgz``
+- http: http://157.253.63.7/BSR_full.tgz
 
-The original source can be found in the Berkley group page.
+The original sources can be found in the Berkley group page.
 
-**Note**: Don't add any of these files to your repository, they are too large.
+**Note**: Don't add any of these files to your repository, they are too big.
 
 ## Data description
 
@@ -54,9 +54,9 @@ Look at the ground truth data for the different human participants, and differen
 
 **Warning:** The mex files required are not available for windows
 
-The file ``bench/test_benchs.m`` contains several examples of how to use the benchmark functions for different types of *results* images. Look at it and run the examples.
+The file ``bench/test_benchs.m`` contains several examples of how to use the benchmark functions for different types of *result* images. Look at it and run the examples.
 
-Look at the files the define the function ``boundaryBench`` and read the description of inputs.
+Look at the file that defines the function ``boundaryBench`` and read the description of its inputs.
 
 # Homework
 
@@ -72,9 +72,52 @@ Use only the ``train`` and ``eval`` datasets to calibrate your function. See htt
 
 ## Test your function
 
-Run a contour benchmark on two cases of your function, and compare it to the UCM algorithm. Use the ``test`` data set of the BSDS500. The final plot should contain at least three lines (two instances of your function and the UCM algorithm).
+Run a **Boundary** benchmark on two cases of your function, and compare it to the state of the art. Use the ``test`` data set of the BSDS500. The final plot should contain at least three lines (two instances of your function and the UCM algorithm). You can also use the plot found [in this repository](Figure02.fig) as a base. Look at the code of the ``plot_eval`` function for more information on how to create these plots.
+
 See http://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/resources.html#bench for an example otuput.
+
+Use different thresholds values to generate a curve.
+
+A summary of the steps required is:
+
+  - Apply your function to each of the images in the *test* dataset
+  - For each image, create a *.mat* file that contains a cell array, which contains severa matrices representing the output of the function for different values of the parameter. Look at the *bench/data/segs* folder for examples.
+  - Run the ``boundaryBench`` function specifying the folder with the *.mat* files as ``pbDir``. See the third example in the *test_benchs* file.
+  - Generate the plot using the code from the ``test_eval`` function.
 
 ## Report
 
-Write a report describing your chosen segmentation methods, the testing methodology, the results from the testing, and a discussion about the results and potential improvements to the function. Use te LaTeX template from the second lab. Upload to your repository the report and the code for your segmentation function.
+Write a report describing your chosen segmentation methods, the testing methodology, the results from the tests, and a discussion about the results and potential improvements to the function. Use the CVPR LaTeX template. Upload to your repository the report (tex and pdf) and the code for your segmentation function. A rubric of how this report will be graded can be found [here](rubric.md).  You may work in pairs.
+
+
+**Due:** March 17, 2016; 8:00 a.m.
+
+## Running the benchmark remotely
+
+The full benchmark on the 200 test images can take a several hours. If you prefer, you may run it on the course server. 
+
+However, all of you would be using the same account so please take into account the following
+
+- Be careful not to mess with other people's data or processes
+- Create a new directory and work only there, don't go into other people's directories
+
+In order to be able to disconnect from the server and let it keep working you can use [sceen](http://linux.die.net/man/1/screen).
+Connect using ``ssh`` and afterwards type
+
+```bash
+screen -S <session_name>
+```
+
+Use your name as session name, so that you don't get confused with other people working at the same time. If you disconnect from the session, you can return to it by typing
+
+```bash
+screen -r <session_name>
+```
+
+## Extra Credit
+
+- Run the benchmark with at least *three* segmentation methods from 
+  - k-means
+  - gmm
+  - hierarchical
+  - watershed
